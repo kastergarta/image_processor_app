@@ -12,6 +12,196 @@ import Button from '@material-ui/core/Button';
 
 export default class ImageOpsContainer extends React.Component {
 
+  constructor(props) {
+        super(props);
+
+        this.state = {
+            transforms: []
+        }
+    }
+
+    updateColorValue(e, value, key) {
+        const transform = {
+            key,
+            value
+        }
+
+        const transforms = this.getUpdatedTransform(this.state.transforms, transform);
+        this.setState({transforms});
+
+    }
+
+    getUpdatedTransform(transforms, transform) {
+
+        const newTransforms = transforms.filter(({key}) => key !== transform.key)
+
+        newTransforms.push(transform);
+
+        return newTransforms
+
+    }
+
+
+    getTransformations() {
+
+        return this.state.transforms.map((tranform) => {
+
+            return ( <Transformation effect={`${tranform.key}:${tranform.value}`} gravity="center" crop="fill" />)
+        })
+    }
+
+    getRBBCons() {
+
+        return [
+            {key: "Red", value: "red", default: 0},
+            {key: "Green", value: "green", default: 0},
+            {key: "Blue", value: "blue", default: 0}
+        ]
+    }
+
+    getHSVCons() {
+
+        return [
+            {key: "Hue", value: "hue", default: 80},
+            {key: "Saturation", value: "saturation", default: 80},
+            {key: "Value", value: "brightness", default: 80},
+        ]
+    }
+
+
+    getSliderValue(key, type) {
+
+        console.log("Transforms : ", this.state.transforms, key, type);
+
+        const transform = this.state.transforms.find((transform) => transform.key === key);
+        console.log("Transform ", transform);
+
+        if (transform) {
+            return transform.value;
+        }
+
+        if (type == "rgb") {
+            return this.getRBBCons().find((transform) => transform.value === key).default;
+        } else if (type == "hsv") {
+            return this.getHSVCons().find((transform) => transform.value === key).default;
+        }
+
+    }
+
+    resetFilters(keys) {
+
+        const newTransforms = this.state.transforms.filter(({key}) => keys.indexOf(key) < 0)
+
+        // if(this.state.transforms.length > newTransforms.length) {
+        this.setState({ transforms: newTransforms });
+        // }
+
+    }
+
+    createRGBEffect(type) {
+
+        const red = {key: "red", value: 0}
+        const blue = {key: "blue", value: 0}
+        const green = {key: "green", value: 0}
+
+        switch(type) {
+            case "all_red":
+                red.value = 100;
+                break;
+            case "all_blue":
+                blue.value = 100;
+                break;
+            case "all_green":
+                green.value = 100;
+                break;
+            default:
+                break;
+        }
+
+        let transforms = this.state.transforms;
+
+        transforms = this.getUpdatedTransform(transforms, red);
+        transforms = this.getUpdatedTransform(transforms, blue);
+        transforms = this.getUpdatedTransform(transforms, green);
+
+        this.setState({transforms})
+
+    }
+
+    createHSVEffect(type) {
+
+        const hue = {key: "hue", value: 80}
+        const saturation = {key: "saturation", value: 80}
+
+        switch(type) {
+            case "grayscale":
+                saturation.value = -70;
+                break;
+            case "sepia":
+                hue.value = 20;
+                saturation.value = -20
+                break;
+            default:
+                break;
+        }
+
+        let transforms = this.state.transforms;
+
+        // transforms = this.getUpdatedTransform(transforms, hue);
+        if(type == "grayscale") {
+            transforms = this.getUpdatedTransform(transforms, saturation);
+        } else if(type == "sepia") {
+            transforms = this.getUpdatedTransform(transforms, hue);
+            transforms = this.getUpdatedTransform(transforms, saturation);
+        }
+
+
+        this.setState({transforms})
+
+    }
+
+    createAdvanceEffects(type) {
+
+        let transforms = this.state.transforms;
+
+        switch(type) {
+            case "cartoon":
+                const transform = {
+                    key: "cartoonify",
+                    value: "20:60"
+                }
+                transforms = this.getUpdatedTransform(transforms, transform);
+                break;
+            case "vignette":
+                const transform_v = {
+                    key: "vignette",
+                    value: "30"
+                }
+                transforms = this.getUpdatedTransform(transforms, transform_v);
+                break;
+            case "oil_painting":
+                const transform_p = {
+                    key: "oil_paint",
+                    value: "40"
+                }
+                transforms = this.getUpdatedTransform(transforms, transform_p);
+                break;
+            case "vibrance":
+                const transform_vb = {
+                    key: "vibrance",
+                    value: "70"
+                }
+                transforms = this.getUpdatedTransform(transforms, transform_vb);
+                break;
+            default:
+                break;
+
+        }
+
+        this.setState({transforms});
+
+    }
+
   render() {
 
         console.log("Transformations : ", this.state.transforms);
