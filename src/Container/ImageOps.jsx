@@ -91,10 +91,7 @@ export default class ImageOpsContainer extends React.Component {
     resetFilters(keys) {
 
         const newTransforms = this.state.transforms.filter(({key}) => keys.indexOf(key) < 0)
-
-        // if(this.state.transforms.length > newTransforms.length) {
         this.setState({ transforms: newTransforms });
-        // }
 
     }
 
@@ -215,7 +212,8 @@ export default class ImageOpsContainer extends React.Component {
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     Input image
                                 </Typography>
-                                <Image sign_url={true} publicId="leena" cloudName="rakesh111" >
+                                <Image resource_type="image" sign_url={true} publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
+                                  <Transformation height="300" width="300" crop="scale" />
                                 </Image>
                             </CardContent>
                        </Card>
@@ -226,7 +224,8 @@ export default class ImageOpsContainer extends React.Component {
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     Output Image
                                 </Typography>
-                                <Image publicId="leena" cloudName="rakesh111" >
+                                <Image resource_type="image" publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
+                                    <Transformation height="300" width="300" crop="scale" />
                                     {this.getTransformations()}
                                 </Image>
                             </CardContent>
