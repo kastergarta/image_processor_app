@@ -213,8 +213,8 @@ export default class ImageOpsContainer extends React.Component {
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     Before
                                 </Typography>
-                                <Image resource_type="image" sign_url={true} publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
-                                  <Transformation height="300" width="300" crop="scale" />
+                                <Image resource_type="image" sign_url={true} publicId="Images/IMG-2762_jrofnq.jpg" cloudName="hyphaha" >
+                                  // <Transformation height="300" width="300" crop="fit" />
                                 </Image>
                             </CardContent>
                        </Card>
@@ -226,8 +226,8 @@ export default class ImageOpsContainer extends React.Component {
                                 <Typography variant="body2" color="textSecondary" component="p">
                                     After
                                 </Typography>
-                                <Image resource_type="image" publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
-                                    <Transformation height="300" width="300" crop="scale" />
+                                <Image resource_type="image" publicId="Images/IMG-2762_jrofnq.jpg" cloudName="hyphaha" >
+                                    // <Transformation height="300" width="300" crop="fit" />
                                     {this.getTransformations()}
                                 </Image>
                             </CardContent>
