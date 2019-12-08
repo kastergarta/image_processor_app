@@ -6,7 +6,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import {Image, Transformation} from 'cloudinary-react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
@@ -80,9 +80,9 @@ export default class ImageOpsContainer extends React.Component {
             return transform.value;
         }
 
-        if (type == "rgb") {
+        if (type === "rgb") {
             return this.getRBBCons().find((transform) => transform.value === key).default;
-        } else if (type == "hsv") {
+        } else if (type === "hsv") {
             return this.getHSVCons().find((transform) => transform.value === key).default;
         }
 
@@ -204,13 +204,14 @@ export default class ImageOpsContainer extends React.Component {
         console.log("Transformations : ", this.state.transforms);
 
         return (
-            <Container  maxWidth="md">
+            <Container  maxWidth="md" className="mainContainer">
                 <Grid container spacing={2}>
+
                     <Grid item xs={6}>
                        <Card>
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Input image
+                                    Before
                                 </Typography>
                                 <Image resource_type="image" sign_url={true} publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
                                   <Transformation height="300" width="300" crop="scale" />
@@ -218,11 +219,12 @@ export default class ImageOpsContainer extends React.Component {
                             </CardContent>
                        </Card>
                     </Grid>
+
                     <Grid item xs={6}>
                         <Card>
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Output Image
+                                    After
                                 </Typography>
                                 <Image resource_type="image" publicId="Images/GH_Photo_khzwj5.jpg" cloudName="hyphaha" >
                                     <Transformation height="300" width="300" crop="scale" />
