@@ -1,4 +1,4 @@
-## IMAGERAMA `Updated 12.07.2019` `[VIDEO](https://youtu.be/iU35G4ZFkfM)`
+## IMAGERAMA `Updated 12.07.2019` [VIDEO](https://youtu.be/iU35G4ZFkfM)
 
 Modern Image processing app with RGB settings, effects and custom filters.
 
