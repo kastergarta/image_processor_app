@@ -14,4 +14,4 @@ Modern Image processing app with RGB settings, effects and custom filters.
 2. React components styled with a [Material-UI](https://material-ui.com).
 3. [Cloudinary API](https://cloudinary.com/documentation/admin_api) for image processing.
 
-![Imagerama Demo](Imagerama Demo.png)
+![Imagerama Demo](./Imagerama_Demo.png)
