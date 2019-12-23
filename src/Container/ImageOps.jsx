@@ -14,9 +14,8 @@ export default class ImageOpsContainer extends React.Component {
 
   constructor(props) {
         super(props);
-
         this.state = {
-            transforms: []
+        transforms: []
         }
     }
 
