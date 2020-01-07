@@ -1,4 +1,4 @@
-## IMAGERAMA `Updated 12.07.2019` [VIDEO](https://youtu.be/iU35G4ZFkfM)
+## IMAGERAMA `Updated 01.06.2020` [VIDEO](https://youtu.be/iU35G4ZFkfM) [LIVE DEMO - Heroku](https://imagerama.herokuapp.com/)
 
 Modern Image processing app with RGB settings, effects and custom filters.
 
